@@ -1,3 +1,10 @@
+require 'optparse'
+
+require 'secret_santa_picker'
+require 'secret_santa_picker/const'
+require 'secret_santa_picker/configuration'
+require 'secret_santa_picker/processor'
+
 module SecretSantaPicker
   class Cli
     def initialize(argv)
@@ -24,6 +31,18 @@ module SecretSantaPicker
         @parser = OptionParser.new do |o|
           o.on "-c", "--csv-file PATH", "Load csv file as participants in secret santa" do |arg|
             config.csv_file_path = arg
+          end
+
+          o.on "-s", "--sender-email EMAIL", "Who to send email from" do |arg|
+            config.sender_email = arg
+          end
+
+          o.on "-p", "--sender-password PASSWORD", "The password for email account being used to send email" do |arg|
+            config.sender_password = arg
+          end
+
+          o.on "-d", "--debug", "Will disable external communication" do |d|
+            config.debug = d
           end
 
           o.on "-V", "--version", "Print the version information" do
