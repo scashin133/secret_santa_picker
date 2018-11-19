@@ -2,6 +2,7 @@ require 'mail'
 require 'csv'
 
 require 'secret_santa_picker/person'
+require 'secret_santa_picker/pair'
 
 module SecretSantaPicker
   class Processor
@@ -16,14 +17,18 @@ module SecretSantaPicker
     private
 
     def send_mail(pair:)
+      sender_email = @conf.sender_email
       mail = Mail.new do
-        from     @conf.sender_email
+        from     sender_email
         to       pair.from.email
         subject  "Cashin Family Secret Santa #{Date.today.strftime('%Y')}"
         body     "Hey #{pair.from.name},\n\nYou are the secret Santa for #{pair.to.name}.\n\nGood Luck!"
       end
 
-      $stdout.puts(mail) && return if @conf.debug
+      if @conf.debug
+        $stdout.puts(mail)
+        return
+      end
 
       mail.delivery_method :smtp, address: 'smtp.gmail.com',
                                   port: 587,

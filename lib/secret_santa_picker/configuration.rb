@@ -6,7 +6,7 @@ module SecretSantaPicker
   class Configuration
     include ConfigDefault
 
-    attr_accessor :csv_file_path, :sender_email, :debug
+    attr_accessor :csv_file_path, :sender_email, :sender_password, :debug
 
     def initialize(&block)
       @csv_file_path = DefaultCSVFilePath
