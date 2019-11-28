@@ -50,7 +50,7 @@ module SecretSantaPicker
             exit 0
           end
 
-          o.on "-x", "--subject-prefix", "Prepend to the Subject line a little additional message" do |arg|
+          o.on "-x", "--subject-prefix SUBJECTPREFIX", "Prepend to the Subject line a little additional message" do |arg|
             config.subject_prefix = arg
           end
 
