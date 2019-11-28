@@ -18,10 +18,12 @@ module SecretSantaPicker
 
     def send_mail(pair:)
       sender_email = @conf.sender_email
+
+      subject = [@conf.subject_prefix, "Secret Santa #{Date.today.strftime('%Y')}"].compact.join(" ")
       mail = Mail.new do
         from     sender_email
         to       pair.from.email
-        subject  "Cashin Family Secret Santa #{Date.today.strftime('%Y')}"
+        subject  subject
         body     "Hey #{pair.from.name},\n\nYou are the secret Santa for #{pair.to.name}.\n\nGood Luck!"
       end
 

@@ -50,6 +50,10 @@ module SecretSantaPicker
             exit 0
           end
 
+          o.on "-x", "--subject-prefix", "Prepend to the Subject line a little additional message" do |arg|
+            config.subject_prefix = arg
+          end
+
           o.banner = "secret_santa_picker <options>"
 
           o.on_tail "-h", "--help", "Show help" do
