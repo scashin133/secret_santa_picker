@@ -1,5 +1,3 @@
-require 'byebug'
-
 RSpec.describe SecretSantaPicker::Pair do
     describe '.generate' do
         subject(:persons) { [SecretSantaPicker::Person.new(name: "mike", email: "mike@gmail.com"), SecretSantaPicker::Person.new(name: "sean", email: "sean@gmail.com"), SecretSantaPicker::Person.new(name: "scott", email: "scott@gmail.com")] }
